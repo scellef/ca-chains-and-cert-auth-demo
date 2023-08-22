@@ -79,15 +79,3 @@ create_root_ca
 create_intermediate_ca pki-int1 Vault_Intermediate_CA_1 pki-root vault-root $((365*6+2))
 create_intermediate_ca pki-int2 Vault_Intermediate_CA_2 pki-root vault-root $((365*3+1))
 create_intermediate_ca pki-int3 Vault_Intermediate_CA_3 pki-root vault-root $((365))
-
-unset VAULT_NAMESPACE
-while : ; do read -p "Enter 'quit' to cleanup and exit: " line
-  if [ $line == "quit" ] ; then
-    for i in three-chained-ints three-separate-ints ; do
-      vault namespace delete $i
-    done
-    exit 0
-  fi
-done
-   
-
